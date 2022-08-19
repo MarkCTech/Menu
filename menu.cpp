@@ -37,12 +37,24 @@ float vec_mean_float(vector <int> vec) {
     return mean;
 }
 
+int vec_min_int(vector <int> vec) {
+    int vecmin = *min_element(vec.begin(),vec.end());
+    return vecmin;
+}
+
+int vec_max_int(vector <int> vec) {
+    int vecmax = *max_element(vec.begin(),vec.end());
+    return vecmax;
+}
+
 int main() {
 
     vector <int> vec{};
     char selection{};
     size_t vecadd{};
     float vecmean{};
+    int vecmin{};
+    int vecmax{};
 
     cout << "Welcome to the application!" << endl;
     do{
@@ -80,11 +92,13 @@ int main() {
                 break;
             case 'S':
             case 's':
-                cout << "Displays smallest int" << endl;
+                vecmin = vec_min_int(vec);
+                cout << "Smallest element in the vector is: " << vecmin << endl;
                 break;
             case 'L':
             case 'l':
-                cout << "Displays largest int" << endl;
+                vecmax = vec_max_int(vec);
+                cout << "Largest element in the vector is: " << vecmax << endl;
                 break;
             case 'Q':
             case 'q':
