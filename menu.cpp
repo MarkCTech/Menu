@@ -54,6 +54,24 @@ int count_vec_int(vector <int> vec, int inputint) {
     return count;
 }
 
+bool are_you_sure() {
+    char selection{};
+    while (true) {
+        cout << "Are you sure? Y/N:  ";
+        cin >> selection;
+        switch (selection){
+            case 'Y':
+            case 'y':
+                return true;
+            case 'N':
+            case 'n':
+                return false;
+            default:
+                cout << "Unknown selection, try again" << endl;
+        }
+    }
+}
+
 int main() {
 
     vector <int> vec{};
@@ -66,7 +84,7 @@ int main() {
     int count{};
 
     cout << "Welcome to The Application!" << endl;
-    do{
+    do {
         cout << "\n---------------------" << endl;
         cout << "P - Print Numbers" << endl;
         cout << "A - Add a Number" << endl;
@@ -74,6 +92,7 @@ int main() {
         cout << "M - Display Mean of the Numbers" << endl;
         cout << "S - Display the Smallest Number" << endl;
         cout << "L - Display the Largest Number" << endl;
+        cout << "D - Delete All Values" << endl;
         cout << "Q - Quit" << endl;
         cout << "\nEnter Your Choice: ";
         cin >> selection;
@@ -130,6 +149,12 @@ int main() {
                 }
                 else
                     cout << "Unable to determine the largest number - list is empty" << endl;
+                break;
+            case 'D':
+            case 'c':
+                if (are_you_sure())
+                    vec.clear();
+                    cout << "\nAll values deleted" << endl;                
                 break;
             case 'Q':
             case 'q':
