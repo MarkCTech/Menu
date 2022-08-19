@@ -24,13 +24,12 @@ size_t get_input_int() {
 
 float vec_sum_float(vector <int>& vec) {
     float vecsum {0};
-    for (int num : vec)
+    for (auto num : vec)
         vecsum += float(num);
     return vecsum;
 }
 
 float vec_mean_float(vector <int> vec) {
-
     float vecsize{static_cast <float> (vec.size())};
     float vecsum{vec_sum_float(vec)};
     float mean = float(vecsum / vecsize);
@@ -47,25 +46,36 @@ int vec_max_int(vector <int> vec) {
     return vecmax;
 }
 
+int count_vec_int(vector <int> vec, int inputint) {
+    int count{0};
+    for (int num : vec)
+        if (num == inputint)
+            count++;
+    return count;
+}
+
 int main() {
 
     vector <int> vec{};
     char selection{};
-    size_t vecadd{};
+    size_t inputint{};
     float vecmean{};
     int vecmin{};
     int vecmax{};
+    int foundvec{};
+    int count{};
 
-    cout << "Welcome to the application!" << endl;
+    cout << "Welcome to The Application!" << endl;
     do{
         cout << "\n---------------------" << endl;
-        cout << "P - Print numbers" << endl;
-        cout << "A - Add a number" << endl;
-        cout << "M - Display mean of the numbers" << endl;
-        cout << "S - Display the smallest number" << endl;
-        cout << "L - Display the largest number" << endl;
+        cout << "P - Print Numbers" << endl;
+        cout << "A - Add a Number" << endl;
+        cout << "F - Find and Display a Number" << endl;
+        cout << "M - Display Mean of the Numbers" << endl;
+        cout << "S - Display the Smallest Number" << endl;
+        cout << "L - Display the Largest Number" << endl;
         cout << "Q - Quit" << endl;
-        cout << "\nEnter your choice: ";
+        cout << "\nEnter Your Choice: ";
         cin >> selection;
         cout << endl;
 
@@ -81,24 +91,45 @@ int main() {
                 break;
             case 'A':
             case 'a':
-                vecadd = get_input_int();
-                vec.push_back(vecadd);
-                cout << vecadd << " added to vector!" << endl;
+                inputint = get_input_int();
+                vec.push_back(inputint);
+                cout << inputint << " added to vector!" << endl;
                 break;
+            case 'F':
+            case 'f':
+                if (!vec.empty())
+                    inputint = get_input_int();
+                    if (find(vec.begin(), vec.end(), inputint) != vec.end())
+                        count = count_vec_int(vec, inputint);
+                    cout << "Number: " << inputint << "\nEntries: " << count;
+                break;
+
             case 'M':
             case 'm':
-                vecmean = vec_mean_float(vec);
-                cout << "Mean: " << vecmean << endl;
+                if (!vec.empty()) {
+                    vecmean = vec_mean_float(vec);
+                    cout << "Mean: " << vecmean << endl;
+                }
+                else
+                    cout << "Unable to calculate the mean - no data"<< endl;
                 break;
             case 'S':
             case 's':
-                vecmin = vec_min_int(vec);
-                cout << "Smallest element in the vector is: " << vecmin << endl;
+                if (!vec.empty()) {
+                    vecmin = vec_min_int(vec);
+                    cout << "Smallest element in the vector is: " << vecmin << endl;
+                }
+                else
+                    cout << "Unable to determine the smallest number - list is empty" <<  endl;
                 break;
             case 'L':
             case 'l':
-                vecmax = vec_max_int(vec);
-                cout << "Largest element in the vector is: " << vecmax << endl;
+                if (!vec.empty()) {
+                    vecmax = vec_max_int(vec);
+                    cout << "Largest element in the vector is: " << vecmax << endl;
+                }
+                else
+                    cout << "Unable to determine the largest number - list is empty" << endl;
                 break;
             case 'Q':
             case 'q':
