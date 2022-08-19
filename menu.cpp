@@ -1,14 +1,15 @@
 #include <iostream>
 #include <vector>
 #include <string>
+#include <numeric>
 using namespace std;
 
-size_t getinputint() {
-    bool keepGoing = true;
+size_t get_input_int() {
+    bool keep_going = true;
     size_t x{};
 
     cout << "Please enter a number: " << endl;
-    while(keepGoing == true)
+    while(keep_going == true)
     {
         cin >> x;
         if( !cin)
@@ -21,11 +22,27 @@ size_t getinputint() {
     return 0;
     }
 
+float vec_sum_float(vector <int>& vec) {
+    float vecsum {0};
+    for (int num : vec)
+        vecsum += float(num);
+    return vecsum;
+}
+
+float vec_mean_float(vector <int> vec) {
+
+    float vecsize{static_cast <float> (vec.size())};
+    float vecsum{vec_sum_float(vec)};
+    float mean = float(vecsum / vecsize);
+    return mean;
+}
+
 int main() {
 
-    vector vec{10,20};
+    vector <int> vec{};
     char selection{};
-    size_t toadd{};
+    size_t vecadd{};
+    float vecmean{};
 
     cout << "Welcome to the application!" << endl;
     do{
@@ -52,13 +69,14 @@ int main() {
                 break;
             case 'A':
             case 'a':
-                toadd = getinputint();
-                vec.push_back(toadd);
-                cout << toadd << " added to vector!" << endl;
+                vecadd = get_input_int();
+                vec.push_back(vecadd);
+                cout << vecadd << " added to vector!" << endl;
                 break;
             case 'M':
             case 'm':
-                cout << "Calculates mean and displays" << endl;
+                vecmean = vec_mean_float(vec);
+                cout << "Mean: " << vecmean << endl;
                 break;
             case 'S':
             case 's':
