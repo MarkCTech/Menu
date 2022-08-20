@@ -4,9 +4,9 @@
 #include <numeric>
 using namespace std;
 
-size_t get_input_int() {
+int get_input_int() {
     bool keep_going = true;
-    size_t x{};
+    int x{};
 
     cout << "Please enter a number: " << endl;
     while(keep_going == true)
@@ -76,7 +76,7 @@ int main() {
 
     vector <int> vec{};
     char selection{};
-    size_t inputint{};
+    int inputint{};
     float vecmean{};
     int vecmin{};
     int vecmax{};
