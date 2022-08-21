@@ -8,6 +8,7 @@ int get_input_int() {
     bool keep_going = true;
     int x{};
 
+
     cout << "Please enter a number: " << endl;
     while(keep_going == true)
     {
@@ -151,7 +152,7 @@ int main() {
                     cout << "Unable to determine the largest number - list is empty" << endl;
                 break;
             case 'D':
-            case 'c':
+            case 'd':
                 if (are_you_sure())
                     vec.clear();
                     cout << "\nAll values deleted" << endl;                
