@@ -4,6 +4,7 @@
 #include <numeric>
 using namespace std;
 
+// Functions for handling menu selections
 void display_menu();
 void get_selection(char& selection);
 void case_p (const vector <int>& vec) ;
@@ -13,15 +14,13 @@ void case_m (const vector <int>& vec, double& vecmean);
 void case_s (const vector <int>& vec, double& vecmin);
 void case_l (const vector <int>& vec, double& vecmax);
 void case_d (vector <int>& vec);
-
+// Functions for returning values
 void get_mean_double(const vector <int>, double& vecmean, double vecsum, double vecsize);
-
 double get_sum_double(const vector <int> vec);
 double get_size_double(const vector <int> vec);
 int get_min_int(const vector <int>);
 int get_max_int(const vector <int>);
 int count_vec_int(const vector <int> vec, int);
-
 int get_input_int();
 bool are_you_sure();
 
@@ -94,9 +93,11 @@ void get_selection (char& selection) {
 }
 
 void case_p (const vector <int>& vec) {
-    if (!vec.empty())
+    if (!vec.empty()) {
+        cout << "[ ";
         for (auto elem: vec)
             cout << elem << " ";
+        cout << "]" << endl;}
     else 
         cout << "[] - the vector is empty";
 }
